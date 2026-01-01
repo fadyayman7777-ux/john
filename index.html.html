@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام حضور الطلاب</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>نظام حضور الطلاب</h1>
+        <button id="logoutBtn">تسجيل الخروج</button>
+    </header>
+    <nav>
+        <button class="nav-btn active" data-section="registration">تسجيل الطلاب</button>
+        <button class="nav-btn" data-section="attendance">الحضور</button>
+        <button class="nav-btn" data-section="report">التقرير اليومي</button>
+    </nav>
+    <main>
+        <!-- قسم تسجيل الطلاب (صفحة بيانات الطلاب) -->
+        <section id="registration" class="section active">
+            <h2>تسجيل طالب جديد</h2>
+            <form id="studentForm">
+                <input type="text" id="studentName" placeholder="اسم الطالب" required>
+                <input type="text" id="studentCode" placeholder="رمز الطالب" required>
+                <button type="submit">إضافة الطالب</button>
+            </form>
+
+            <!-- مولّد QR مبدئي: إدخل رمز/نص لإنشاء QR سريعاً -->
+            <div class="qr-generator">
+                <h3>مولّد رمز QR سريع</h3>
+                <input type="text" id="qrTextInput" placeholder="أدخل رمز الطالب أو نص..." />
+                <button id="generateBtn">إنشاء QR</button>
+                <button id="downloadPreviewBtn">تحميل المعاينة</button>
+                <div class="qr-preview">
+                    <canvas id="qrPreviewCanvas" class="qr-canvas" width="200" height="200"></canvas>
+                </div>
+            </div>
+
+            <h3>قائمة الطلاب</h3>
+            <table id="studentsTable">
+                <thead>
+                    <tr>
+                        <th>الاسم</th>
+                        <th>الرمز</th>
+                        <th>رمز QR</th>
+                        <th>تحميل QR</th>
+                        <th>حذف</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <!-- زر حذف جميع الطلاب (جديد، في قسم الطلاب فقط) -->
+            <button id="deleteAllStudentsBtn" class="delete-all-btn">حذف جميع الطلاب</button>
+        </section>
+
+        <!-- قسم الحضور (صفحة الحضور) -->
+        <section id="attendance" class="section">
+            <h2>تسجيل الحضور</h2>
+            <div class="attendance-options">
+                <div>
+                    <h3>حضور يدوي</h3>
+                    <input type="text" id="manualCode" placeholder="أدخل رمز الطالب">
+                    <button id="markPresentBtn">تسجيل حضور</button>
+                </div>
+                <div>
+                    <h3>حضور عبر QR</h3>
+                    <button id="openCameraBtn">فتح الكاميرا</button>
+                    <video id="camera" autoplay></video>
+                    <canvas id="canvas" style="display:none;"></canvas>
+                </div>
+            </div>
+            <h3>الطلاب الحاضرون اليوم</h3>
+            <ul id="presentList"></ul>
+            <!-- زر إعادة تعيين الحضور (يبقى هنا فقط) -->
+            <button id="resetAttendanceBtn" class="reset-btn">إعادة تعيين الحضور اليومي</button>
+        </section>
+
+        <!-- قسم التقرير -->
+        <section id="report" class="section">
+            <h2>التقرير اليومي</h2>
+            <button id="generatePdfBtn">إنشاء PDF</button>
+            <div id="reportContent"></div>
+        </section>
+    </main>
+
+    <!-- مكتبات خارجية -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

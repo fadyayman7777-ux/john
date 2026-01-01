@@ -1,0 +1,158 @@
+/* إعادة تعيين الأساسيات */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #667eea 0%, #a24b4b 100%);
+    color: #333;
+    direction: rtl;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 400px;
+    margin: 100px auto;
+    background: rgba(255, 255, 255, 0.479);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+header {
+    background: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background: #f4f4f4;
+    padding: 10px;
+}
+
+.nav-btn {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.nav-btn.active {
+    background: #764ba2;
+}
+
+.nav-btn:hover {
+    background: #5a6fd8;
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+}
+
+.section {
+    display: none;
+    animation: slideIn 0.5s ease-in;
+}
+
+.section.active {
+    display: block;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input, button {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    background: #667eea;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #5a6fd8;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.error {
+    color: red;
+    margin-top: 10px;
+}
+
+.attendance-options {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#camera {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 5px;
+}
+
+.reset-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #ff4757;
+}
+
+.reset-btn:hover {
+    background: #ff3742;
+}
+
+/* متجاوب */
+@media (max-width: 768px) {
+    .attendance-options {
+        flex-direction: column;
+    }
+    nav {
+        flex-wrap: wrap;
+    }
+}
